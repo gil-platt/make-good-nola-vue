@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;1,300&display=swap");
+@import "./variables.scss";
+
+body {
+  color: $primary;
+  background-color: $secondary;
+  font-family: 'Rubik', sans-serif;
+  padding: 0.75rem;
+  margin: 0;
+}
