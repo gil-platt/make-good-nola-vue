@@ -8,7 +8,8 @@ div#navigation-bar {
     padding-right: 0.75rem;
     align-items: center;
     flex-wrap: wrap;
-    a {
+    a.site-link,
+    a.social-media-link {
       text-decoration: none;
       color: inherit;
       font-weight: 500;
@@ -16,34 +17,61 @@ div#navigation-bar {
     div#accessibility-wrapper {
       span#accessibility-filters {
         font-family: "Comic Sans MS", "Comic Sans", cursive;
-        border-radius: 0.5rem;
+        border-radius: 1rem;
         font-size: 1.25rem;
         font-weight: 600;
         padding: 0.5rem;
         border-width: 0.1rem;
-        background: none;
         border-style: solid;
         border-color: inherit;
-        flex: none;
+        background-color: $tertiary;
+        box-shadow: 0 0.15rem 0.25rem rgba($primary, 0.25);
+        div.accessibility-menu {
+          width: 10.8125rem;
+          display: flex;
+          flex-direction: column;
+          border-radius: 0.5rem;
+          flex-grow: 1;
+          justify-content: center;
+          position: fixed;
+          text-align: center;
+          padding: 0.5rem;
+          align-self: center;
+          font-weight: 500;
+          margin: 0.75rem 0 0 0;
+          background-color: $tertiary;
+          box-shadow: -1px 1px 6px -1px rgba($primary, 0.5);
+          -webkit-box-shadow: -1px 1px 6px -1px rgba($primary, 0.75);
+          -moz-box-shadow: -1px 1px 6px -1px rgba($primary, 0.75);
+          a.accessibility-menu-item {
+            padding: 0.125rem;
+            &:not(:last-child) {
+              border-bottom: 0.03125rem solid rgba($primary, 0.05);
+            }
+            &:hover {
+              background-color: $drop_down;
+            }
+          }
+        }
       }
-      padding: 1.5rem;
-      border-right: 0.125rem solid;
+      margin: 1.5rem;
     }
     div.donor-social-navigation {
       display: flex;
       align-items: center;
-      span.donor-button {
-        border-radius: 0.5rem;
-        font-size: 1.25rem;
-        font-weight: 500;
-        padding: 0.5rem;
-        border-width: 0.1rem;
-        background: none;
-        border-style: solid;
-        border-color: inherit;
-        &:focus {
-          border: none;
-          outline: none;
+      a.donor-link {
+        
+        span.donor-button {
+          border-radius: 1rem;
+          font-size: 1.5rem;
+          font-weight: 600;
+          padding: 0.5rem;
+          color: $tertiary;
+          background: none;
+          background-color: $primary;
+          box-shadow: 0.0625rem 0 0.3125rem 0 rgba($primary, 0.75);
+          -webkit-box-shadow: 0.0625rem 0 0.3125rem 0 rgba($primary, 0.75);
+          -moz-box-shadow: 0.0625rem 0 0.3125rem 0 rgba($primary, 0.75);
         }
       }
       span.social-media-links {
@@ -63,21 +91,34 @@ div#navigation-bar {
     }
 
     span.site-links {
+      width: 25.375rem;
+      justify-content: center;
       font-size: 1.25rem;
       border-right: 0.125rem solid;
+      border-left: 0.125rem solid;
+
+      a {
+        &:not(:first-of-type) {
+          margin-left: 0.75rem;
+          margin-right: 0.75rem;
+        }
+        &:first-of-type {
+          margin-left: 0;
+          margin-right: 0.75rem;
+        }
+      }
       a.current-link {
         padding: 0.5rem;
         align-self: baseline;
-        border-radius: 0.5rem;
+        // border-radius: 0.5rem;
         align-self: center;
         border-width: 0.1rem;
         border-style: solid;
-        color: $secondary;
+        color: $tertiary;
         background-color: $primary;
       }
       a.site-link {
         align-self: center;
-        margin: 0 0.75rem;
       }
     }
   }

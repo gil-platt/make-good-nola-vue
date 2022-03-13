@@ -2,15 +2,13 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons'
-import { faUniversalAccess } from '@fortawesome/free-solid-svg-icons'
+import { faCaretDown, faUniversalAccess } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
 import "./styles.scss"
-
-
-library.add(faInstagram, faFacebook, faUniversalAccess);
+library.add(faInstagram, faFacebook, faUniversalAccess, faCaretDown);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

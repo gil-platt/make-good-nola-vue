@@ -10,3 +10,7 @@ body {
   padding: 0.75rem;
   margin: 0;
 }
+::selection {
+  background: #A6A6A6;
+  color: #101010;
+}

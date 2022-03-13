@@ -1,22 +1,50 @@
 <template>
-  <div role="navigation" id="navigation-bar" aria-labelledby="Accessibility settings, site links, and social media links">
+  <div
+    role="navigation"
+    id="navigation-bar"
+    aria-labelledby="Accessibility settings, site links, and social media links"
+  >
     <div class="top-menu" aria-labelledby="Site links and social media links">
       <div id="accessibility-wrapper" aria-hidden="true">
-        <div class="button-drop-down" aria-labelledby="Dropdown button and dropdown menu content">
-          <span id="accessibility-filters" role="button" aria-labelledby="Set fonts and colors for visual assistance">
-            Accessibility <font-awesome-icon icon="fa-solid fa-universal-access" aria-hidden="true" />
-            <!-- <div class="accessibility-menu" aria-labelledby="Dropdown menu">
-              <a role="button">
-
+        <div
+          class="button-drop-down"
+          aria-labelledby="Dropdown button and dropdown menu content"
+        >
+          <span
+            id="accessibility-filters"
+            role="button"
+            aria-labelledby="Set fonts and colors for visual assistance"
+            ref="menu"
+            @click="isFocused = !isFocused"
+          >
+            Accessibility
+            <font-awesome-icon
+              icon="fa-solid fa-universal-access"
+              aria-hidden="true"
+            />
+            <font-awesome-icon icon="fas fa-caret-down" />
+            <div
+              class="accessibility-menu"
+              aria-labelledby="Dropdown menu"
+              v-show="isFocused"
+            >
+              <a
+                role="button"
+                :aria-label="item.ariaLabel"
+                class="accessibility-menu-item"
+                v-for="item in accessibilityMenu"
+                :key="item.label"
+              >
+                {{ item.label }}
               </a>
-            </div> -->
+            </div>
           </span>
         </div>
       </div>
       <span class="site-links" aria-labelledby="Site links">
-        <a 
-          :class="currentPage === item.page ? 'current-link' : 'site-link'" 
-          v-for="item in headerItems" 
+        <a
+          :class="currentPage === item.page ? 'current-link' : 'site-link'"
+          v-for="item in headerItems"
           :key="item.page"
           @click="setCurrentPage(item.page)"
         >
@@ -33,11 +61,8 @@
             <font-awesome-icon :icon="`fa-brands fa-${item.brand}`" />
           </a>
         </span>
-        <a role="button">
-          <span
-            class="donor-button"
-            aria-label="link to the donation page"
-          >
+        <a class="donor-link" role="button">
+          <span class="donor-button" aria-label="link to the donation page">
             Become a donor
           </span>
         </a>
@@ -49,71 +74,90 @@
 <script>
 export default {
   name: "HeaderBar",
+  mounted() {
+    this.setIsFocused();
+  },
   data() {
     return {
       currentPage: "Home",
+      isFocused: false,
+
       accessibilityMenu: [
         {
-          label: "Dyslexia"
+          label: "Dyslexia",
+          ariaLabel: "",
         },
         {
-          label: "Deuteranomaly"
+          label: "Deuteranomaly",
+          ariaLabel: "",
         },
         {
-          label: "Protanomaly"
+          ariaLabel: "",
+          label: "Protanomaly",
         },
         {
-          label: "Protanopia or Deuteranopia"
+          ariaLabel: "",
+          label: "Protanopia",
         },
         {
-          label: "Tritanomaly"
+          ariaLabel: "",
+          label: "Deuteranopia",
         },
         {
-          label: "Tritanopia"
+          ariaLabel: "",
+          label: "Tritanomaly",
         },
         {
-          label: "Monochromacy"
-        }
+          ariaLabel: "",
+          label: "Tritanopia",
+        },
+        {
+          ariaLabel: "",
+          label: "Monochromacy",
+        },
       ],
       headerItems: [
         {
           page: "Home",
-          link: ""
+          link: "",
         },
         {
           page: "About",
-          link: ""
+          link: "",
         },
         {
           page: "Links",
-          link: ""
+          link: "",
         },
         {
           page: "Makers' Fests",
-          link: ""
-        }
+          link: "",
+        },
       ],
       socialMediaItems: [
         {
           brand: "facebook",
-          link: ""
+          link: "",
         },
         {
           brand: "instagram",
-          link: ""
-        }
-      ]
+          link: "",
+        },
+      ],
     };
   },
   methods: {
     setCurrentPage(page) {
       this.currentPage = page;
-    }
-  }
+    },
+    setIsFocused() {
+      this.isFocused = !this.isFocused;
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import './header-bar.scss';
+@import "./header-bar.scss";
 </style>
 
