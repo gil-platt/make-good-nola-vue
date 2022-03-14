@@ -1,0 +1,44 @@
+@import "./variables.scss";
+
+.rnd-btn {
+  &:hover, &:focus {
+    background-image: linear-gradient(rgba($btn_highlight, 0.4) 0 0);
+  }
+  border-radius: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 0.5rem;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-color: inherit;
+}
+
+.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 1000;
+  float: left;
+  margin: 0.75rem 0 0;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba($primary, 0.15);
+  border-radius: 0.5rem;
+  .bord-btm-drop-down-child {
+    &:first-child {
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
+    }
+    &:last-child {
+      border-bottom-left-radius: inherit;
+      border-bottom-right-radius: inherit;
+    }
+    padding: 0.25rem;
+    &:not(:last-of-type) {
+      border-bottom: 0.03rem solid rgba($primary, 0.075);
+    }
+    &:hover {
+      background-color: $drop_down_item_bg;
+    }
+  }
+}

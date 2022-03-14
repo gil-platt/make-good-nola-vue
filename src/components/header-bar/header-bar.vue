@@ -5,104 +5,71 @@
     aria-labelledby="Accessibility settings, site links, and social media links"
   >
     <div class="top-menu" aria-labelledby="Site links and social media links">
-      <div id="accessibility-wrapper" aria-hidden="true">
-        <div
-          class="button-drop-down"
-          aria-labelledby="Dropdown button and dropdown menu content"
-        >
-          <span
-            id="accessibility-filters"
-            role="button"
-            aria-labelledby="Set fonts and colors for visual assistance"
-            ref="menu"
-            @click="accessibilityMenuOpen = !accessibilityMenuOpen"
-          >
-            Accessibility
-            <font-awesome-icon
-              icon="fa-solid fa-universal-access"
-              aria-hidden="true"
-            />
-            <font-awesome-icon icon="fas fa-caret-down" />
-            <div
-              class="accessibility-menu"
-              aria-labelledby="Dropdown menu"
-              v-show="accessibilityMenuOpen"
-            >
-              <a
-                role="button"
-                :aria-label="item.ariaLabel"
-                class="accessibility-menu-item"
-                v-for="item in accessibilityMenu"
-                :key="item.label"
-              >
-                {{ item.label }}
-              </a>
-            </div>
-          </span>
-        </div>
-      </div>
       <div
-        id="mobile-styles"
-        aria-labelledby="A container to style the navigation menu for mobile users. Disregard this message if you are a desktop user."
-        @click="setMobileMenuOpen()"
+        class="rnd-btn accessibility-drop-down"
+        aria-labelledby="Dropdown button and dropdown menu content"
+        ref="dropdown"
+        role="button"
+        @click="setAccessibilityMenuOpen()"
       >
-        <span class="site-links" aria-labelledby="Site links">
-          <a
-            :class="currentPage === item.page ? 'current-link' : 'site-link'"
-            v-for="item in headerItems"
-            :key="item.page"
-            @click="setCurrentPage(item.page)"
+        <span
+          id="accessibility-filters"
+          role="button"
+          aria-labelledby="Set fonts and colors for visual assistance"
+        >
+          Accessibility
+          <font-awesome-icon
+            icon="fa-solid fa-universal-access"
+            aria-hidden="true"
+          />
+          <font-awesome-icon icon="fas fa-caret-down" />
+          <span
+            class="accessibility-menu dropdown-menu"
+            aria-labelledby="Dropdown menu"
+            v-show="accessibilityMenuOpen"
           >
-            {{ item.page }}
-          </a>
-        </span>
-        <div class="donor-social-navigation">
-          <span class="social-media-links" aria-labelledby="Social media links">
             <a
-              class="social-media-link"
-              v-for="item in socialMediaItems"
-              :key="item.brand"
+              role="button"
+              :aria-label="item.ariaLabel"
+              class="accessibility-menu-item bord-btm-drop-down-child"
+              v-for="item in accessibilityMenu"
+              :key="item.label"
             >
-              <font-awesome-icon :icon="`fa-brands fa-${item.brand}`" />
+              {{ item.label }}
             </a>
           </span>
-          <a class="donor-link" role="button">
-            <span
-              class="donor-button"
-              data-alttext="Donate"
-              aria-label="link to the donation page"
-            >
-              <span>Become a donor</span>
-            </span>
-          </a>
-        </div>
+        </span>
       </div>
-      <div
-        id="mobile-menu"
-        v-show="mobileMenuOpen"
-        aria-placeholder="Mobile site menu"
-      >
+
+      <span class="site-links" aria-labelledby="Site links">
         <a
-          :class="
-            currentPage === item.page
-              ? 'current-mobile-link'
-              : 'mobile-menu-link'
-          "
+          :class="currentPage === item.page ? 'current-link' : 'site-link'"
           v-for="item in headerItems"
           :key="item.page"
           @click="setCurrentPage(item.page)"
         >
           {{ item.page }}
         </a>
-        <a
-          class="mobile-menu-link"
-          v-for="item in socialMediaItems"
-          :key="item.brand"
+      </span>
+      <a
+        class="social-media-link"
+        v-for="item in socialMediaItems"
+        :key="item.brand"
+      >
+        <span :data-alttext="item.brand" class="fa-container"
+          ><span
+            ><font-awesome-icon :icon="`fa-brands fa-${item.brand}`" /> </span
+        ></span>
+      </a>
+      <a class="donor-link" role="button">
+        <span
+          class="rnd-btn donor-button"
+          data-alttext="Donate"
+          aria-label="link to the donor page"
         >
-          {{ item.brand }}
-        </a>
-        <a class="mobile-menu-link"> Become a Donor </a>
-      </div>
+          <span>Become a donor</span>
+        </span>
+      </a>
     </div>
   </div>
 </template>
@@ -185,6 +152,7 @@ export default {
     },
     setAccessibilityMenuOpen() {
       this.accessibilityMenuOpen = !this.accessibilityMenuOpen;
+      this.$refs.dropdown.focus()
     },
     setMobileMenuOpen() {
       window.visualViewport.width >= 375 && window.visualViewport.width <= 677
@@ -198,4 +166,3 @@ export default {
 <style lang="scss" scoped>
 @import "./header-bar.scss";
 </style>
-
