@@ -1,11 +1,11 @@
 <template>
-  <div
+  <nav
     role="navigation"
     id="navigation-bar"
     aria-labelledby="Accessibility settings, site links, and social media links"
   >
     <div class="top-menu" aria-labelledby="Site links and social media links">
-      <div
+      <button
         class="rnd-btn accessibility-drop-down"
         aria-labelledby="Dropdown button and dropdown menu content"
         ref="dropdown"
@@ -39,16 +39,25 @@
             </a>
           </span>
         </span>
-      </div>
+      </button>
 
       <span class="site-links" aria-labelledby="Site links">
         <a
-          :class="currentPage === item.page ? 'current-link' : 'site-link'"
+          href="#"
+          :class="
+            currentPage === item.page
+              ? 'current-link-wrapper'
+              : 'site-link-wrapper'
+          "
           v-for="item in headerItems"
           :key="item.page"
           @click="setCurrentPage(item.page)"
         >
-          {{ item.page }}
+          <span
+            :class="currentPage === item.page ? 'current-link' : 'site-link'"
+          >
+            {{ item.page }}
+          </span>
         </a>
       </span>
       <a
@@ -61,17 +70,17 @@
             ><font-awesome-icon :icon="`fa-brands fa-${item.brand}`" /> </span
         ></span>
       </a>
-      <a class="donor-link" role="button">
-        <span
+      <a class="donor-link">
+        <button
           class="rnd-btn donor-button"
           data-alttext="Donate"
           aria-label="link to the donor page"
         >
           <span>Become a donor</span>
-        </span>
+        </button>
       </a>
     </div>
-  </div>
+  </nav>
 </template>
 
 <script>
@@ -152,7 +161,7 @@ export default {
     },
     setAccessibilityMenuOpen() {
       this.accessibilityMenuOpen = !this.accessibilityMenuOpen;
-      this.$refs.dropdown.focus()
+      this.$refs.dropdown.focus();
     },
     setMobileMenuOpen() {
       window.visualViewport.width >= 375 && window.visualViewport.width <= 677
